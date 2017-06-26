@@ -1,0 +1,49 @@
+The Ocarina should be able to do the following at minimum:
+
+- Play a "blow" note (blow keys: A, CU, CR, CD, CL)
+- Stop a "blow" note
+- Change the "blow" note (stop the current note and play a new note)
+- Flat or sharp a note (flat/sharp keys: Z, R)
+- Bend a note (using axis JD .. JU)
+- Apply vibrato to a note (using axis JL .. JR)
+
+If the Ocarina interfaces with MIDI, actions 5 and 6 above are trivial; these 
+can be achieved by using MIDI controller messages. 
+
+Additional actions (optional):
+
+Transpose the blow notes
+Change the MIDI instrument
+
+Main loop
+---------
+
+Do while the instrument is on
+	Read controller state
+	Compare with old controller state
+	Translate Controller state change to Ocarina command
+	Do Ocarina command
+	Save controller state
+Loop
+
+How to choose the currently blowing note from buttons
+
+Simplify the problem: assume there are only 2 blow keys (X and Y).
+X, Y = pressed down; x, y = not pressed down
+
+Detect changes in state for the buttons
+---------------------------------------
+
+Transitions		Effect
+-----------		------
+xy - Xy			Blow X
+xy - xY			Blow Y
+xy - XY			Do nothing
+Xy - XY			Stop X, Blow Y
+XY - Xy			Stop Y, Blow X
+XY - xy			Do nothing
+
+The "do nothing" transitions means that the ocarina will lock up
+if more than one button is pressed at the same time.
+		
+		

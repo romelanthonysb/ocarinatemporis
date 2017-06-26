@@ -1,0 +1,27 @@
+N64 Controller Map
+
+#	Button
+--	------
+0	
+1	A
+2	B
+3
+4
+5
+6	L
+7	R
+8	Z
+9	Start
+10	
+11
+12	CU
+13	CR
+14	CD
+15	CL
+
+#	Axis
+--	----
+1	-JL ... +JR
+2	-JU ... +JD
+3	-CU ... +CD
+4	-CR ... +CL
